@@ -38,26 +38,18 @@ color:#2e3d2f;
 100%{background-position:0% 50%;}
 }
 
-/* HERO IMAGE */
-
-.hero{
-width:100%;
-max-height:420px;
-overflow:hidden;
-}
+/* HERO */
 
 .hero img{
 width:100%;
 height:420px;
 object-fit:cover;
-filter:brightness(0.85);
+filter:brightness(.85);
 }
 
 /* HEADER */
 
-header{
-padding:60px 20px 40px;
-}
+header{padding:60px 20px;}
 
 h1{
 font-family:'Playfair Display',serif;
@@ -84,7 +76,7 @@ backdrop-filter:blur(12px);
 box-shadow:0 8px 25px rgba(0,0,0,.15);
 }
 
-/* LOVE LETTER */
+/* LETTER */
 
 .secret{
 max-width:520px;
@@ -94,19 +86,12 @@ background:var(--glass);
 border-radius:20px;
 display:none;
 backdrop-filter:blur(12px);
-animation:fadeIn 1s ease forwards;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(10px);}
-to{opacity:1;transform:translateY(0);}
 }
 
 .cinematic{
 opacity:0;
 transform:scale(.9);
 transition:1.2s ease;
-box-shadow:0 0 25px rgba(212,175,55,.4);
 }
 
 .cinematic.show{
@@ -133,27 +118,33 @@ font-size:30px;
 cursor:pointer;
 }
 
+/* PETALS + PAWS */
+
+.petal,.paw{
+position:fixed;
+top:-40px;
+animation:fall linear infinite;
+z-index:-1;
+opacity:.4;
+}
+
+.petal{
+width:20px;height:20px;background:pink;border-radius:50%;
+}
+
+.paw{font-size:22px;}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
 /* GALLERY */
 
 .gallery{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:30px;
+gap:25px;
 padding:60px 25px;
-}
-
-.card{
-background:white;
-border-radius:18px;
-padding:12px;
-box-shadow:0 15px 35px rgba(0,0,0,.15);
-transition:.4s;
-cursor:pointer;
-}
-
-.card:hover{
-transform:translateY(-12px) scale(1.05);
-box-shadow:0 25px 50px rgba(212,175,55,.45);
 }
 
 .card img{
@@ -170,7 +161,6 @@ background:rgba(0,0,0,.8);
 display:none;
 align-items:center;
 justify-content:center;
-z-index:999;
 }
 
 .modal img{
@@ -179,44 +169,9 @@ max-height:90%;
 border-radius:15px;
 }
 
-/* PETALS */
-
-.petal{
-position:fixed;
-top:-50px;
-width:20px;
-height:20px;
-background:pink;
-border-radius:50%;
-opacity:.6;
-animation:fall linear infinite;
-z-index:-1;
-}
-
-/* PAWS */
-
-.paw{
-position:fixed;
-top:-40px;
-font-size:22px;
-opacity:0.25;
-animation:fall linear infinite;
-z-index:-1;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
-}
-}
-
 /* FOOTER */
 
-footer{
-padding:40px;
-color:var(--gold);
-font-weight:600;
-}
+footer{padding:40px;color:var(--gold);}
 
 </style>
 </head>
@@ -234,9 +189,12 @@ font-weight:600;
 
 <div class="player">
 <p style="font-size:12px;color:var(--gold)">Play Her Song 🎵</p>
-<audio id="bgMusic" controls loop>
+
+<!-- MUTED AUTOPLAY -->
+<audio id="bgMusic" autoplay muted loop controls>
 <source src="song.mp3" type="audio/mpeg">
 </audio>
+
 </div>
 </header>
 
@@ -272,32 +230,14 @@ A Thought I Wanted To Share
 
 <script>
 
-/* INTRO TEXT */
-const intro=`A small website for KIA, who loves animals, peace, and unknowingly stole my attention.`;
+/* INTRO */
+const intro="A small website for KIA, who loves animals, peace, and unknowingly stole my attention.";
 let i=0;
-function typeIntro(){
+(function type(){
 if(i<intro.length){
-document.getElementById("typeText").innerHTML+=intro.charAt(i);
-i++;
-setTimeout(typeIntro,40);
-}}
-typeIntro();
-
-/* CONFETTI */
-function confetti(){
-for(let i=0;i<60;i++){
-let c=document.createElement("div");
-c.style.position="fixed";
-c.style.width="8px";
-c.style.height="8px";
-c.style.background=`hsl(${Math.random()*360},100%,70%)`;
-c.style.left=Math.random()*100+"vw";
-c.style.top="-10px";
-c.style.animation="fall 3s linear";
-document.body.appendChild(c);
-setTimeout(()=>c.remove(),3000);
-}
-}
+document.getElementById("typeText").innerHTML+=intro.charAt(i++);
+setTimeout(type,40);
+}})();
 
 /* PETALS */
 setInterval(()=>{
@@ -320,31 +260,29 @@ document.body.appendChild(p);
 setTimeout(()=>p.remove(),9000);
 },500);
 
-/* GAME */
-let score=0;
-let unlocked=false;
+/* GAME + UNLOCK */
+let score=0,unlocked=false;
 
 setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="💚";
 h.style.left=Math.random()*80+"%";
-h.style.top=Math.random()*160+"px";
+h.style.top=Math.random()*150+"px";
 
 h.onclick=()=>{
 if(unlocked) return;
-
 score++;
 document.getElementById("score").innerText=score;
 
 if(score>=10){
 unlocked=true;
-const letter=document.getElementById("loveLetter");
-letter.style.display="block";
-setTimeout(()=>letter.classList.add("show"),100);
+const l=document.getElementById("loveLetter");
+l.style.display="block";
+setTimeout(()=>l.classList.add("show"),100);
 startLetter();
-confetti();
 }
+
 h.remove();
 };
 
@@ -352,8 +290,8 @@ document.getElementById("game").appendChild(h);
 setTimeout(()=>h.remove(),2000);
 },800);
 
-/* LETTER TYPEWRITER */
-const message=`I don’t know when it happened,
+/* LETTER TYPE */
+const msg=`I don’t know when it happened,
 but I started noticing the little things.
 
 The way you smile.
@@ -363,39 +301,36 @@ The calm you seem to carry.
 Some people don’t try to be special.
 They just are.
 
-I’m not expecting anything from this.
 I just wanted you to know that
 you’re appreciated in a quiet, genuine way.
 
 🌿`;
 
-let li=0;
 function startLetter(){
+let j=0;
 const t=document.getElementById("letterText");
-t.innerHTML="";
-li=0;
-function type(){
-if(li<message.length){
-t.innerHTML+=message.charAt(li);
-li++;
+(function type(){
+if(j<msg.length){
+t.innerHTML+=msg.charAt(j++);
 setTimeout(type,35);
-}}
-type();
+}})();
 }
 
 /* MODAL */
-function openModal(card){
-document.getElementById("modalImg").src=card.querySelector("img").src;
-document.getElementById("modal").style.display="flex";
+function openModal(c){
+modal.style.display="flex";
+modalImg.src=c.querySelector("img").src;
 }
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
+function closeModal(){modal.style.display="none";}
 
-/* SMART AUTOPLAY */
+/* 🔊 UNMUTE ON FIRST TAP */
 const music=document.getElementById("bgMusic");
-window.addEventListener("load",()=>{music.play().catch(()=>{});});
-document.addEventListener("click",()=>{if(music.paused) music.play();},{once:true});
+
+document.addEventListener("click",()=>{
+music.muted=false;
+music.volume=0.7;
+music.play();
+},{once:true});
 
 </script>
 
