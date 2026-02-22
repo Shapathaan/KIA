@@ -202,7 +202,7 @@ font-weight:600;
 
 <div class="player">
 <p style="font-size:12px;color:var(--gold)">Play Her Song 🎵</p>
-<audio controls>
+<audio id="bgMusic" controls loop>
 <source src="song.mp3" type="audio/mpeg">
 </audio>
 </div>
@@ -349,6 +349,17 @@ document.getElementById("modal").style.display="flex";
 function closeModal(){
 document.getElementById("modal").style.display="none";
 }
+
+/* SMART AUTOPLAY */
+const music=document.getElementById("bgMusic");
+
+window.addEventListener("load",()=>{
+music.play().catch(()=>{});
+});
+
+document.addEventListener("click",()=>{
+if(music.paused) music.play();
+},{once:true});
 
 </script>
 
