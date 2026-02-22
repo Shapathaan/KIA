@@ -15,12 +15,7 @@
 --glass:rgba(255,255,255,0.35);
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
 body{
 min-height:100vh;
@@ -38,12 +33,12 @@ color:#2e3d2f;
 100%{background-position:0% 50%;}
 }
 
-/* START SCREEN */
+/* START OVERLAY */
 
 #startScreen{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.85);
+background:rgba(0,0,0,.85);
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -54,20 +49,18 @@ color:white;
 
 #startScreen h2{
 font-family:'Playfair Display',serif;
-font-size:2.5rem;
 color:var(--gold);
+font-size:2.5rem;
 }
 
 #startBtn{
 margin-top:25px;
 padding:15px 40px;
-font-size:1.2rem;
 border:none;
 border-radius:40px;
 background:var(--gold);
-color:black;
+font-size:1.2rem;
 cursor:pointer;
-box-shadow:0 0 25px var(--gold);
 }
 
 /* HERO */
@@ -168,6 +161,39 @@ background:pink;border-radius:50%;
 to{transform:translateY(110vh) rotate(360deg);}
 }
 
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:25px;
+padding:60px 25px;
+}
+
+.card img{
+width:100%;
+border-radius:14px;
+cursor:pointer;
+}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+
+.modal img{
+max-width:90%;
+max-height:90%;
+border-radius:15px;
+}
+
 /* FOOTER */
 
 footer{padding:40px;color:var(--gold);}
@@ -198,7 +224,7 @@ footer{padding:40px;color:var(--gold);}
 <div id="typeText"></div>
 
 <div class="player">
-🎵 Music Playing
+🎵 Playing Background Music
 </div>
 </header>
 
@@ -216,22 +242,34 @@ A Thought I Wanted To Share
 <p id="letterText"></p>
 </div>
 
+<!-- GALLERY -->
+<section class="gallery">
+<div class="card" onclick="openModal(this)"><img src="photo1.jpg"></div>
+<div class="card" onclick="openModal(this)"><img src="photo2.jpg"></div>
+<div class="card" onclick="openModal(this)"><img src="photo3.jpg"></div>
+<div class="card" onclick="openModal(this)"><img src="photo4.jpg"></div>
+<div class="card" onclick="openModal(this)"><img src="photo5.jpg"></div>
+<div class="card" onclick="openModal(this)"><img src="photo6.jpg"></div>
+</section>
+
 <footer>Made with ❤️ only for you</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeModal()">
+<img id="modalImg">
+</div>
 
 <script>
 
 /* START BUTTON MUSIC */
 
 const music=document.getElementById("bgMusic");
-const startBtn=document.getElementById("startBtn");
-const startScreen=document.getElementById("startScreen");
-
-startBtn.onclick=()=>{
+document.getElementById("startBtn").onclick=()=>{
 music.play();
-startScreen.style.display="none";
+document.getElementById("startScreen").style.display="none";
 };
 
-/* INTRO TEXT */
+/* INTRO */
 
 const intro="A small website for KIA, who loves animals, peace, and unknowingly stole my attention.";
 let i=0;
@@ -277,6 +315,7 @@ h.style.top=Math.random()*150+"px";
 
 h.onclick=()=>{
 if(unlocked) return;
+
 score++;
 document.getElementById("score").innerText=score;
 
@@ -320,6 +359,16 @@ if(j<msg.length){
 t.innerHTML+=msg.charAt(j++);
 setTimeout(type,35);
 }})();
+}
+
+/* MODAL */
+
+function openModal(c){
+document.getElementById("modal").style.display="flex";
+document.getElementById("modalImg").src=c.querySelector("img").src;
+}
+function closeModal(){
+document.getElementById("modal").style.display="none";
 }
 
 </script>
