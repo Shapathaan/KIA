@@ -67,21 +67,6 @@ box-shadow:0 8px 25px rgba(0,0,0,.15);
 
 /* SECRET */
 
-.secret-btn{
-margin-top:30px;
-padding:12px 28px;
-border:none;
-border-radius:30px;
-background:var(--gold);
-color:white;
-font-weight:600;
-cursor:pointer;
-box-shadow:0 0 20px rgba(212,175,55,.6);
-transition:.3s;
-}
-
-.secret-btn:hover{transform:scale(1.1);}
-
 .secret{
 max-width:520px;
 margin:25px auto;
@@ -96,6 +81,20 @@ animation:fadeIn 1s ease forwards;
 @keyframes fadeIn{
 from{opacity:0;transform:translateY(10px);}
 to{opacity:1;transform:translateY(0);}
+}
+
+/* CINEMATIC LETTER */
+
+.cinematic{
+opacity:0;
+transform:scale(.9);
+transition:1.2s ease;
+box-shadow:0 0 25px rgba(212,175,55,.4);
+}
+
+.cinematic.show{
+opacity:1;
+transform:scale(1);
 }
 
 /* GALLERY */
@@ -198,7 +197,7 @@ font-weight:600;
 <body>
 
 <header>
-<h1 id="title">Hey ✨</h1>
+<h1>Hey KIA ✨</h1>
 <div id="typeText"></div>
 
 <div class="player">
@@ -207,10 +206,6 @@ font-weight:600;
 <source src="song.mp3" type="audio/mpeg">
 </audio>
 </div>
-
-<button class="secret-btn" onclick="reveal()">Tap For A Secret 💛</button>
-
-<div class="secret" id="secretBox"></div>
 </header>
 
 <!-- GAME -->
@@ -219,29 +214,12 @@ font-weight:600;
 <p>Score: <span id="score">0</span> / 10</p>
 </div>
 
-<!-- LOVE LETTER (LOCKED UNTIL 10) -->
-<div class="secret" id="loveLetter">
+<!-- LOVE LETTER -->
+<div class="secret cinematic" id="loveLetter">
 <p style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#d4af37;">
 A Thought I Wanted To Share
 </p>
-
-<p style="margin-top:12px;line-height:1.7">
-I don’t know when it happened,  
-but I started noticing the little things.
-
-The way you smile.  
-The way you’re gentle with animals.  
-The calm you seem to carry.
-
-Some people don’t try to be special.  
-They just are.
-
-I’m not expecting anything from this.  
-I just wanted you to know that  
-you’re appreciated in a quiet, genuine way.
-
-🌿
-</p>
+<p id="letterText" style="margin-top:12px;line-height:1.7"></p>
 </div>
 
 <!-- GALLERY -->
@@ -263,31 +241,20 @@ you’re appreciated in a quiet, genuine way.
 
 <script>
 
-/* NAME */
-const herName="KIA";
-document.getElementById("title").innerText="Hey "+herName+" ✨";
-
-const text=`A small website for ${herName}, who loves animals, peace, and unknowingly stole my attention.`;
+/* TYPEWRITER INTRO */
+const intro=`A small website for KIA, who loves animals, peace, and unknowingly stole my attention.`;
 let i=0;
-function type(){
-if(i<text.length){
-document.getElementById("typeText").innerHTML+=text.charAt(i);
+function typeIntro(){
+if(i<intro.length){
+document.getElementById("typeText").innerHTML+=intro.charAt(i);
 i++;
-setTimeout(type,40);
+setTimeout(typeIntro,40);
 }}
-type();
-
-/* SECRET BUTTON */
-function reveal(){
-document.getElementById("secretBox").innerHTML=
-`${herName}, you have the kind of smile that makes ordinary days feel special. I built this only for you. 🐾✨`;
-document.getElementById("secretBox").style.display="block";
-confetti();
-}
+typeIntro();
 
 /* CONFETTI */
 function confetti(){
-for(let i=0;i<70;i++){
+for(let i=0;i<60;i++){
 let c=document.createElement("div");
 c.style.position="fixed";
 c.style.width="8px";
@@ -311,7 +278,7 @@ document.body.appendChild(p);
 setTimeout(()=>p.remove(),8000);
 },300);
 
-/* GAME WITH UNLOCK */
+/* GAME + UNLOCK */
 let score=0;
 let unlocked=false;
 
@@ -330,16 +297,49 @@ document.getElementById("score").innerText=score;
 
 if(score>=10){
 unlocked=true;
-document.getElementById("loveLetter").style.display="block";
+const letter=document.getElementById("loveLetter");
+letter.style.display="block";
+setTimeout(()=>letter.classList.add("show"),100);
+startLetter();
 confetti();
 }
-
 h.remove();
 };
 
 document.getElementById("game").appendChild(h);
 setTimeout(()=>h.remove(),2000);
 },800);
+
+/* LETTER TYPEWRITER */
+const message=`I don’t know when it happened,
+but I started noticing the little things.
+
+The way you smile.
+The way you’re gentle with animals.
+The calm you seem to carry.
+
+Some people don’t try to be special.
+They just are.
+
+I’m not expecting anything from this.
+I just wanted you to know that
+you’re appreciated in a quiet, genuine way.
+
+🌿`;
+
+let li=0;
+function startLetter(){
+const t=document.getElementById("letterText");
+t.innerHTML="";
+li=0;
+function type(){
+if(li<message.length){
+t.innerHTML+=message.charAt(li);
+li++;
+setTimeout(type,35);
+}}
+type();
+}
 
 /* MODAL */
 function openModal(card){
