@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For The Girl Who Loves Paws 🐾</title>
+<title>For Someone Special 💚</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
@@ -17,12 +17,7 @@
 --glass:rgba(255,255,255,0.35);
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
 body{
 min-height:100vh;
@@ -40,11 +35,9 @@ color:#2e3d2f;
 100%{background-position:0% 50%;}
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
-header{
-padding:80px 20px 40px;
-}
+header{padding:80px 20px 40px;}
 
 h1{
 font-family:'Playfair Display',serif;
@@ -56,11 +49,11 @@ text-shadow:0 0 15px rgba(212,175,55,.5);
 #typeText{
 margin-top:15px;
 font-size:1.1rem;
-max-width:600px;
+max-width:650px;
 margin-inline:auto;
 }
 
-/* ================= MUSIC ================= */
+/* MUSIC */
 
 .player{
 margin-top:25px;
@@ -69,11 +62,10 @@ padding:15px 30px;
 background:var(--glass);
 border-radius:40px;
 backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,.4);
 box-shadow:0 8px 25px rgba(0,0,0,.15);
 }
 
-/* ================= SECRET NOTE ================= */
+/* SECRET */
 
 .secret-btn{
 margin-top:30px;
@@ -88,12 +80,10 @@ box-shadow:0 0 20px rgba(212,175,55,.6);
 transition:.3s;
 }
 
-.secret-btn:hover{
-transform:scale(1.1);
-}
+.secret-btn:hover{transform:scale(1.1);}
 
 .secret{
-max-width:500px;
+max-width:520px;
 margin:25px auto;
 padding:25px;
 background:var(--glass);
@@ -102,11 +92,11 @@ display:none;
 backdrop-filter:blur(12px);
 }
 
-/* ================= GALLERY ================= */
+/* GALLERY */
 
 .gallery{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:30px;
 padding:60px 25px;
 }
@@ -130,13 +120,9 @@ width:100%;
 border-radius:14px;
 }
 
-.caption{
-margin-top:12px;
-font-weight:600;
-color:#558b2f;
-}
+.caption{margin-top:12px;font-weight:600;color:#558b2f;}
 
-/* ================= MODAL ================= */
+/* MODAL */
 
 .modal{
 position:fixed;
@@ -154,22 +140,43 @@ max-height:90%;
 border-radius:15px;
 }
 
-/* ================= FLOATING EMOJIS ================= */
+/* FALLING PETALS */
 
-.float{
+.petal{
 position:fixed;
-font-size:22px;
-opacity:.25;
-animation:rise 6s linear infinite;
-z-index:-1;
+top:-50px;
+width:20px;
+height:20px;
+background:pink;
+border-radius:50%;
+opacity:.6;
+animation:fall linear infinite;
 }
 
-@keyframes rise{
-0%{transform:translateY(110vh) rotate(0deg);}
-100%{transform:translateY(-10vh) rotate(360deg);}
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
 }
 
-/* ================= FOOTER ================= */
+/* GAME */
+
+#game{
+margin:40px auto;
+max-width:400px;
+padding:30px;
+background:var(--glass);
+border-radius:25px;
+backdrop-filter:blur(12px);
+}
+
+.heart{
+position:absolute;
+font-size:30px;
+cursor:pointer;
+}
+
+/* FOOTER */
 
 footer{
 padding:40px 20px;
@@ -183,7 +190,7 @@ font-weight:600;
 <body>
 
 <header>
-<h1>Hey Bright Eyes ✨</h1>
+<h1 id="title">Hey ✨</h1>
 <div id="typeText"></div>
 
 <div class="player">
@@ -195,32 +202,25 @@ font-weight:600;
 
 <button class="secret-btn" onclick="reveal()">Tap For A Secret 💛</button>
 
-<div class="secret" id="secretBox">
-You have the kind of smile that makes ordinary days feel special.  
-I built this because you deserve small magic. 🐾✨
-</div>
+<div class="secret" id="secretBox"></div>
 </header>
 
+<!-- GAME -->
+<div id="game">
+<h3>Catch The Hearts 💚</h3>
+<p>Score: <span id="score">0</span></p>
+</div>
+
+<!-- GALLERY -->
 <section class="gallery">
-<div class="card" onclick="openModal(this)">
-<img src="photo1.jpg">
-<div class="caption">That Smile 🌸</div>
-</div>
-
-<div class="card" onclick="openModal(this)">
-<img src="photo2.jpg">
-<div class="caption">Pure Heart 🐾</div>
-</div>
-
-<div class="card" onclick="openModal(this)">
-<img src="photo3.jpg">
-<div class="caption">Always Shining 💚</div>
-</div>
+<div class="card" onclick="openModal(this)"><img src="photo1.jpg"><div class="caption">Smile 🌸</div></div>
+<div class="card" onclick="openModal(this)"><img src="photo2.jpg"><div class="caption">Soft Soul 🐾</div></div>
+<div class="card" onclick="openModal(this)"><img src="photo3.jpg"><div class="caption">Glow ✨</div></div>
+<div class="card" onclick="openModal(this)"><img src="photo4.jpg"><div class="caption">Magic 🤍</div></div>
+<div class="card" onclick="openModal(this)"><img src="photo5.jpg"><div class="caption">Favorite 💚</div></div>
 </section>
 
-<footer>
-Made with ❤️ only for you
-</footer>
+<footer>Made with ❤️ only for you</footer>
 
 <!-- MODAL -->
 <div class="modal" id="modal" onclick="closeModal()">
@@ -229,8 +229,12 @@ Made with ❤️ only for you
 
 <script>
 
-/* TYPEWRITER */
-const text="A small website for the girl who loves animals, peace, and unknowingly stole my attention.";
+/* PERSONALIZE NAME */
+const herName="KIA";   // CHANGE NAME HERE
+
+document.getElementById("title").innerText="Hey "+herName+" ✨";
+
+const text=`A small website for ${herName}, who loves animals, peace, and unknowingly stole my attention.`;
 let i=0;
 function type(){
 if(i<text.length){
@@ -240,10 +244,56 @@ setTimeout(type,40);
 }}
 type();
 
-/* SECRET */
+/* SECRET + CONFETTI */
 function reveal(){
+document.getElementById("secretBox").innerHTML=
+`${herName}, you have the kind of smile that makes ordinary days feel special. I built this only for you. 🐾✨`;
 document.getElementById("secretBox").style.display="block";
+confetti();
 }
+
+/* CONFETTI EFFECT */
+function confetti(){
+for(let i=0;i<80;i++){
+let c=document.createElement("div");
+c.style.position="fixed";
+c.style.width="8px";
+c.style.height="8px";
+c.style.background=`hsl(${Math.random()*360},100%,70%)`;
+c.style.left=Math.random()*100+"vw";
+c.style.top="-10px";
+c.style.animation="fall 3s linear";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+}
+
+/* FALLING PETALS */
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petal";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(Math.random()*3+5)+"s";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),8000);
+},300);
+
+/* GAME */
+let score=0;
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💚";
+h.style.left=Math.random()*80+"%";
+h.style.top=Math.random()*200+"px";
+h.onclick=()=>{
+score++;
+document.getElementById("score").innerText=score;
+h.remove();
+};
+document.getElementById("game").appendChild(h);
+setTimeout(()=>h.remove(),2000);
+},800);
 
 /* MODAL */
 function openModal(card){
@@ -253,18 +303,6 @@ document.getElementById("modal").style.display="flex";
 function closeModal(){
 document.getElementById("modal").style.display="none";
 }
-
-/* FLOATING PAWS & HEARTS */
-function spawn(){
-const el=document.createElement("div");
-el.className="float";
-el.innerHTML=Math.random()>0.5?"🐾":"💚";
-el.style.left=Math.random()*100+"vw";
-el.style.animationDuration=(Math.random()*3+4)+"s";
-document.body.appendChild(el);
-setTimeout(()=>el.remove(),7000);
-}
-setInterval(spawn,700);
 
 </script>
 
