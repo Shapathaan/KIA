@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special</title>
+    <style>
+        :root {
+            --light-green: #e0f2f1;
+            --mint: #b9f6ca;
+            --gold: #d4af37;
+            --dark-green: #2e7d32;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--light-green), #ffffff);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-green);
+            overflow-x: hidden;
+        }
+
+        /* Shining Header Effect */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px var(--mint); }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px var(--gold); }
+        }
+
+        /* Pet Lover Section */
+        .pet-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid var(--mint);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--gold);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .caption {
+            font-weight: bold;
+            color: var(--dark-green);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-style: italic;
+            color: var(--gold);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>A Special Space for a Special Person ✨</h1>
+        <p>Because you (and your furry friends) are amazing!</p>
+    </header>
+
+    <div class="pet-section">
+        <div class="card">
+            <img src="photo1.jpg" alt="Your Photo">
+            <p class="caption">The Smile That Brightens Days 🌟</p>
+        </div>
+
+        <div class="card">
+            <img src="photo2.jpg" alt="Pet Photo">
+            <p class="caption">Pure Love & Paws 🐾</p>
+        </div>
+
+        <div class="card">
+            <img src="photo3.jpg" alt="Video Placeholder">
+            <p class="caption">Moments Worth Keeping Forever 💚</p>
+        </div>
+    </div>
+
+    <footer>
+        Made with ✨ by SHABAZ
+    </footer>
+
+</body>
+</html>
+
