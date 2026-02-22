@@ -11,13 +11,16 @@
 <style>
 
 :root{
---mint:#e9f5ec;
---soft:#c8e6c9;
 --gold:#d4af37;
 --glass:rgba(255,255,255,0.35);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
 body{
 min-height:100vh;
@@ -35,9 +38,26 @@ color:#2e3d2f;
 100%{background-position:0% 50%;}
 }
 
+/* HERO IMAGE */
+
+.hero{
+width:100%;
+max-height:420px;
+overflow:hidden;
+}
+
+.hero img{
+width:100%;
+height:420px;
+object-fit:cover;
+filter:brightness(0.85);
+}
+
 /* HEADER */
 
-header{padding:80px 20px 40px;}
+header{
+padding:60px 20px 40px;
+}
 
 h1{
 font-family:'Playfair Display',serif;
@@ -48,7 +68,6 @@ text-shadow:0 0 15px rgba(212,175,55,.5);
 
 #typeText{
 margin-top:15px;
-font-size:1.1rem;
 max-width:650px;
 margin-inline:auto;
 }
@@ -65,7 +84,7 @@ backdrop-filter:blur(12px);
 box-shadow:0 8px 25px rgba(0,0,0,.15);
 }
 
-/* SECRET */
+/* LOVE LETTER */
 
 .secret{
 max-width:520px;
@@ -83,8 +102,6 @@ from{opacity:0;transform:translateY(10px);}
 to{opacity:1;transform:translateY(0);}
 }
 
-/* CINEMATIC LETTER */
-
 .cinematic{
 opacity:0;
 transform:scale(.9);
@@ -95,6 +112,25 @@ box-shadow:0 0 25px rgba(212,175,55,.4);
 .cinematic.show{
 opacity:1;
 transform:scale(1);
+}
+
+/* GAME */
+
+#game{
+margin:40px auto;
+max-width:400px;
+padding:30px;
+background:var(--glass);
+border-radius:25px;
+backdrop-filter:blur(12px);
+position:relative;
+min-height:220px;
+}
+
+.heart{
+position:absolute;
+font-size:30px;
+cursor:pointer;
 }
 
 /* GALLERY */
@@ -124,8 +160,6 @@ box-shadow:0 25px 50px rgba(212,175,55,.45);
 width:100%;
 border-radius:14px;
 }
-
-.caption{margin-top:12px;font-weight:600;color:#558b2f;}
 
 /* MODAL */
 
@@ -159,34 +193,27 @@ animation:fall linear infinite;
 z-index:-1;
 }
 
+/* PAWS */
+
+.paw{
+position:fixed;
+top:-40px;
+font-size:22px;
+opacity:0.25;
+animation:fall linear infinite;
+z-index:-1;
+}
+
 @keyframes fall{
-to{transform:translateY(110vh) rotate(360deg);}
+to{
+transform:translateY(110vh) rotate(360deg);
 }
-
-/* GAME */
-
-#game{
-margin:40px auto;
-max-width:400px;
-padding:30px;
-background:var(--glass);
-border-radius:25px;
-backdrop-filter:blur(12px);
-position:relative;
-min-height:220px;
-}
-
-.heart{
-position:absolute;
-font-size:30px;
-cursor:pointer;
-user-select:none;
 }
 
 /* FOOTER */
 
 footer{
-padding:40px 20px;
+padding:40px;
 color:var(--gold);
 font-weight:600;
 }
@@ -195,6 +222,11 @@ font-weight:600;
 </head>
 
 <body>
+
+<!-- HERO -->
+<div class="hero">
+<img src="hero.jpg">
+</div>
 
 <header>
 <h1>Hey KIA ✨</h1>
@@ -219,29 +251,28 @@ font-weight:600;
 <p style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#d4af37;">
 A Thought I Wanted To Share
 </p>
-<p id="letterText" style="margin-top:12px;line-height:1.7"></p>
+<p id="letterText"></p>
 </div>
 
 <!-- GALLERY -->
 <section class="gallery">
-<div class="card" onclick="openModal(this)"><img src="photo1.jpg"><div class="caption">Smile 🌸</div></div>
-<div class="card" onclick="openModal(this)"><img src="photo2.jpg"><div class="caption">Soft Soul 🐾</div></div>
-<div class="card" onclick="openModal(this)"><img src="photo3.jpg"><div class="caption">Glow ✨</div></div>
-<div class="card" onclick="openModal(this)"><img src="photo4.jpg"><div class="caption">Magic 🤍</div></div>
-<div class="card" onclick="openModal(this)"><img src="photo5.jpg"><div class="caption">Favorite 💚</div></div>
-<div class="card" onclick="openModal(this)"><img src="photo6.jpg"><div class="caption">Adorable 🥰</div></div>
+<div class="card" onclick="openModal(this)"><img src="photo1.jpg"></div>
+<div class="card" onclick="openModal(this)"><img src="photo2.jpg"></div>
+<div class="card" onclick="openModal(this)"><img src="photo3.jpg"></div>
+<div class="card" onclick="openModal(this)"><img src="photo4.jpg"></div>
+<div class="card" onclick="openModal(this)"><img src="photo5.jpg"></div>
+<div class="card" onclick="openModal(this)"><img src="photo6.jpg"></div>
 </section>
 
 <footer>Made with ❤️ only for you</footer>
 
-<!-- MODAL -->
 <div class="modal" id="modal" onclick="closeModal()">
 <img id="modalImg">
 </div>
 
 <script>
 
-/* TYPEWRITER INTRO */
+/* INTRO TEXT */
 const intro=`A small website for KIA, who loves animals, peace, and unknowingly stole my attention.`;
 let i=0;
 function typeIntro(){
@@ -278,7 +309,18 @@ document.body.appendChild(p);
 setTimeout(()=>p.remove(),8000);
 },300);
 
-/* GAME + UNLOCK */
+/* PAWS */
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="paw";
+p.innerHTML="🐾";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(Math.random()*4+6)+"s";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),9000);
+},500);
+
+/* GAME */
 let score=0;
 let unlocked=false;
 
@@ -352,14 +394,8 @@ document.getElementById("modal").style.display="none";
 
 /* SMART AUTOPLAY */
 const music=document.getElementById("bgMusic");
-
-window.addEventListener("load",()=>{
-music.play().catch(()=>{});
-});
-
-document.addEventListener("click",()=>{
-if(music.paused) music.play();
-},{once:true});
+window.addEventListener("load",()=>{music.play().catch(()=>{});});
+document.addEventListener("click",()=>{if(music.paused) music.play();},{once:true});
 
 </script>
 
