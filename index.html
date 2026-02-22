@@ -1,119 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Someone Special</title>
-    <style>
-        :root {
-            --light-green: #e0f2f1;
-            --mint: #b9f6ca;
-            --gold: #d4af37;
-            --dark-green: #2e7d32;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, var(--light-green), #ffffff);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--dark-green);
-            overflow-x: hidden;
-        }
+<title>For The Girl Who Loves Paws 🐾</title>
 
-        /* Shining Header Effect */
-        header {
-            text-align: center;
-            padding: 50px 20px;
-            background: rgba(255, 255, 255, 0.5);
-            border-bottom: 2px solid var(--gold);
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
-        h1 {
-            font-size: 2.5rem;
-            color: var(--gold);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
+<style>
 
-        @keyframes glow {
-            from { text-shadow: 0 0 5px #fff, 0 0 10px var(--mint); }
-            to { text-shadow: 0 0 10px #fff, 0 0 20px var(--gold); }
-        }
+:root{
+--mint:#e9f5ec;
+--soft:#c8e6c9;
+--gold:#d4af37;
+--glass:rgba(255,255,255,0.35);
+}
 
-        /* Pet Lover Section */
-        .pet-section {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 40px;
-            flex-wrap: wrap;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-        .card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            padding: 15px;
-            width: 250px;
-            text-align: center;
-            transition: transform 0.3s;
-            border: 1px solid var(--mint);
-        }
+body{
+min-height:100vh;
+background:linear-gradient(120deg,#f1f8e9,#ffffff,#dcedc8);
+background-size:400% 400%;
+animation:bgMove 12s infinite ease-in-out;
+overflow-x:hidden;
+text-align:center;
+color:#2e3d2f;
+}
 
-        .card:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: var(--gold);
-        }
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
 
-        .card img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
+/* ================= HEADER ================= */
 
-        .caption {
-            font-weight: bold;
-            color: var(--dark-green);
-        }
+header{
+padding:80px 20px 40px;
+}
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            font-style: italic;
-            color: var(--gold);
-        }
-    </style>
+h1{
+font-family:'Playfair Display',serif;
+font-size:3rem;
+color:var(--gold);
+text-shadow:0 0 15px rgba(212,175,55,.5);
+}
+
+#typeText{
+margin-top:15px;
+font-size:1.1rem;
+max-width:600px;
+margin-inline:auto;
+}
+
+/* ================= MUSIC ================= */
+
+.player{
+margin-top:25px;
+display:inline-block;
+padding:15px 30px;
+background:var(--glass);
+border-radius:40px;
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,.4);
+box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+
+/* ================= SECRET NOTE ================= */
+
+.secret-btn{
+margin-top:30px;
+padding:12px 28px;
+border:none;
+border-radius:30px;
+background:var(--gold);
+color:white;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 0 20px rgba(212,175,55,.6);
+transition:.3s;
+}
+
+.secret-btn:hover{
+transform:scale(1.1);
+}
+
+.secret{
+max-width:500px;
+margin:25px auto;
+padding:25px;
+background:var(--glass);
+border-radius:20px;
+display:none;
+backdrop-filter:blur(12px);
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+padding:60px 25px;
+}
+
+.card{
+background:white;
+border-radius:18px;
+padding:12px;
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+transition:.4s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-12px) scale(1.05);
+box-shadow:0 25px 50px rgba(212,175,55,.45);
+}
+
+.card img{
+width:100%;
+border-radius:14px;
+}
+
+.caption{
+margin-top:12px;
+font-weight:600;
+color:#558b2f;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+
+.modal img{
+max-width:90%;
+max-height:90%;
+border-radius:15px;
+}
+
+/* ================= FLOATING EMOJIS ================= */
+
+.float{
+position:fixed;
+font-size:22px;
+opacity:.25;
+animation:rise 6s linear infinite;
+z-index:-1;
+}
+
+@keyframes rise{
+0%{transform:translateY(110vh) rotate(0deg);}
+100%{transform:translateY(-10vh) rotate(360deg);}
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+padding:40px 20px;
+color:var(--gold);
+font-weight:600;
+}
+
+</style>
 </head>
+
 <body>
 
-    <header>
-        <h1>A Special Space for a Special Person ✨</h1>
-        <p>Because you (and your furry friends) are amazing!</p>
-    </header>
+<header>
+<h1>Hey Bright Eyes ✨</h1>
+<div id="typeText"></div>
 
-    <div class="pet-section">
-        <div class="card">
-            <img src="photo1.jpg" alt="Your Photo">
-            <p class="caption">The Smile That Brightens Days 🌟</p>
-        </div>
+<div class="player">
+<p style="font-size:12px;color:var(--gold)">Play Her Song 🎵</p>
+<audio controls>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+</div>
 
-        <div class="card">
-            <img src="photo2.jpg" alt="Pet Photo">
-            <p class="caption">Pure Love & Paws 🐾</p>
-        </div>
+<button class="secret-btn" onclick="reveal()">Tap For A Secret 💛</button>
 
-        <div class="card">
-            <img src="photo3.jpg" alt="Video Placeholder">
-            <p class="caption">Moments Worth Keeping Forever 💚</p>
-        </div>
-    </div>
+<div class="secret" id="secretBox">
+You have the kind of smile that makes ordinary days feel special.  
+I built this because you deserve small magic. 🐾✨
+</div>
+</header>
 
-    <footer>
-        Made with ✨ by SHABAZ
-    </footer>
+<section class="gallery">
+<div class="card" onclick="openModal(this)">
+<img src="photo1.jpg">
+<div class="caption">That Smile 🌸</div>
+</div>
+
+<div class="card" onclick="openModal(this)">
+<img src="photo2.jpg">
+<div class="caption">Pure Heart 🐾</div>
+</div>
+
+<div class="card" onclick="openModal(this)">
+<img src="photo3.jpg">
+<div class="caption">Always Shining 💚</div>
+</div>
+</section>
+
+<footer>
+Made with ❤️ only for you
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeModal()">
+<img id="modalImg">
+</div>
+
+<script>
+
+/* TYPEWRITER */
+const text="A small website for the girl who loves animals, peace, and unknowingly stole my attention.";
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typeText").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,40);
+}}
+type();
+
+/* SECRET */
+function reveal(){
+document.getElementById("secretBox").style.display="block";
+}
+
+/* MODAL */
+function openModal(card){
+document.getElementById("modalImg").src=card.querySelector("img").src;
+document.getElementById("modal").style.display="flex";
+}
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+/* FLOATING PAWS & HEARTS */
+function spawn(){
+const el=document.createElement("div");
+el.className="float";
+el.innerHTML=Math.random()>0.5?"🐾":"💚";
+el.style.left=Math.random()*100+"vw";
+el.style.animationDuration=(Math.random()*3+4)+"s";
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),7000);
+}
+setInterval(spawn,700);
+
+</script>
 
 </body>
 </html>
-
