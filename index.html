@@ -4,31 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For KIA 💚</title>
+<title>For Someone Special 💚</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
+--mint:#e9f5ec;
+--soft:#c8e6c9;
 --gold:#d4af37;
 --glass:rgba(255,255,255,0.35);
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
 body{
 min-height:100vh;
 background:linear-gradient(120deg,#f1f8e9,#ffffff,#dcedc8);
 background-size:400% 400%;
 animation:bgMove 12s infinite ease-in-out;
-text-align:center;
 overflow-x:hidden;
+text-align:center;
+color:#2e3d2f;
 }
 
 @keyframes bgMove{
@@ -39,9 +37,7 @@ overflow-x:hidden;
 
 /* HEADER */
 
-header{
-padding:70px 20px 40px;
-}
+header{padding:80px 20px 40px;}
 
 h1{
 font-family:'Playfair Display',serif;
@@ -52,6 +48,7 @@ text-shadow:0 0 15px rgba(212,175,55,.5);
 
 #typeText{
 margin-top:15px;
+font-size:1.1rem;
 max-width:650px;
 margin-inline:auto;
 }
@@ -68,11 +65,110 @@ backdrop-filter:blur(12px);
 box-shadow:0 8px 25px rgba(0,0,0,.15);
 }
 
+/* SECRET */
+
+.secret-btn{
+margin-top:30px;
+padding:12px 28px;
+border:none;
+border-radius:30px;
+background:var(--gold);
+color:white;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 0 20px rgba(212,175,55,.6);
+transition:.3s;
+}
+
+.secret-btn:hover{transform:scale(1.1);}
+
+.secret{
+max-width:520px;
+margin:25px auto;
+padding:25px;
+background:var(--glass);
+border-radius:20px;
+display:none;
+backdrop-filter:blur(12px);
+animation:fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:30px;
+padding:60px 25px;
+}
+
+.card{
+background:white;
+border-radius:18px;
+padding:12px;
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+transition:.4s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-12px) scale(1.05);
+box-shadow:0 25px 50px rgba(212,175,55,.45);
+}
+
+.card img{
+width:100%;
+border-radius:14px;
+}
+
+.caption{margin-top:12px;font-weight:600;color:#558b2f;}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+
+.modal img{
+max-width:90%;
+max-height:90%;
+border-radius:15px;
+}
+
+/* PETALS */
+
+.petal{
+position:fixed;
+top:-50px;
+width:20px;
+height:20px;
+background:pink;
+border-radius:50%;
+opacity:.6;
+animation:fall linear infinite;
+z-index:-1;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
 /* GAME */
 
 #game{
 margin:40px auto;
-max-width:420px;
+max-width:400px;
 padding:30px;
 background:var(--glass);
 border-radius:25px;
@@ -83,51 +179,15 @@ min-height:220px;
 
 .heart{
 position:absolute;
-font-size:32px;
+font-size:30px;
 cursor:pointer;
 user-select:none;
 }
 
-/* LETTER */
-
-#letterBox{
-margin:40px auto;
-max-width:520px;
-padding:30px;
-background:var(--glass);
-border-radius:25px;
-backdrop-filter:blur(12px);
-display:none;
-animation:fadeIn 1s ease forwards;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:scale(.9);}
-to{opacity:1;transform:scale(1);}
-}
-
-/* PETALS */
-
-.petal{
-position:fixed;
-top:-40px;
-width:18px;
-height:18px;
-background:pink;
-border-radius:50%;
-opacity:.6;
-animation:fall linear infinite;
-z-index:-1;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
-}
-}
+/* FOOTER */
 
 footer{
-padding:40px;
+padding:40px 20px;
 color:var(--gold);
 font-weight:600;
 }
@@ -138,7 +198,7 @@ font-weight:600;
 <body>
 
 <header>
-<h1>Hey KIA ✨</h1>
+<h1 id="title">Hey ✨</h1>
 <div id="typeText"></div>
 
 <div class="player">
@@ -147,6 +207,10 @@ font-weight:600;
 <source src="song.mp3" type="audio/mpeg">
 </audio>
 </div>
+
+<button class="secret-btn" onclick="reveal()">Tap For A Secret 💛</button>
+
+<div class="secret" id="secretBox"></div>
 </header>
 
 <!-- GAME -->
@@ -155,15 +219,13 @@ font-weight:600;
 <p>Score: <span id="score">0</span> / 10</p>
 </div>
 
-<!-- LOVE LETTER -->
-<div id="letterBox">
-
-<p style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);">
+<!-- LOVE LETTER (LOCKED UNTIL 10) -->
+<div class="secret" id="loveLetter">
+<p style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#d4af37;">
 A Thought I Wanted To Share
 </p>
 
-<p style="margin-top:15px;line-height:1.7">
-
+<p style="margin-top:12px;line-height:1.7">
 I don’t know when it happened,  
 but I started noticing the little things.
 
@@ -179,17 +241,33 @@ I just wanted you to know that
 you’re appreciated in a quiet, genuine way.
 
 🌿
-
 </p>
-
 </div>
+
+<!-- GALLERY -->
+<section class="gallery">
+<div class="card" onclick="openModal(this)"><img src="photo1.jpg"><div class="caption">Smile 🌸</div></div>
+<div class="card" onclick="openModal(this)"><img src="photo2.jpg"><div class="caption">Soft Soul 🐾</div></div>
+<div class="card" onclick="openModal(this)"><img src="photo3.jpg"><div class="caption">Glow ✨</div></div>
+<div class="card" onclick="openModal(this)"><img src="photo4.jpg"><div class="caption">Magic 🤍</div></div>
+<div class="card" onclick="openModal(this)"><img src="photo5.jpg"><div class="caption">Favorite 💚</div></div>
+<div class="card" onclick="openModal(this)"><img src="photo6.jpg"><div class="caption">Adorable 🥰</div></div>
+</section>
 
 <footer>Made with ❤️ only for you</footer>
 
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeModal()">
+<img id="modalImg">
+</div>
+
 <script>
 
-/* TYPEWRITER */
-const text="A small website for KIA, who loves animals, peace, and unknowingly stole my attention.";
+/* NAME */
+const herName="KIA";
+document.getElementById("title").innerText="Hey "+herName+" ✨";
+
+const text=`A small website for ${herName}, who loves animals, peace, and unknowingly stole my attention.`;
 let i=0;
 function type(){
 if(i<text.length){
@@ -199,15 +277,13 @@ setTimeout(type,40);
 }}
 type();
 
-/* PETALS */
-setInterval(()=>{
-let p=document.createElement("div");
-p.className="petal";
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=(Math.random()*3+5)+"s";
-document.body.appendChild(p);
-setTimeout(()=>p.remove(),8000);
-},300);
+/* SECRET BUTTON */
+function reveal(){
+document.getElementById("secretBox").innerHTML=
+`${herName}, you have the kind of smile that makes ordinary days feel special. I built this only for you. 🐾✨`;
+document.getElementById("secretBox").style.display="block";
+confetti();
+}
 
 /* CONFETTI */
 function confetti(){
@@ -225,8 +301,17 @@ setTimeout(()=>c.remove(),3000);
 }
 }
 
-/* GAME LOGIC (FIXED) */
+/* PETALS */
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petal";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(Math.random()*3+5)+"s";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),8000);
+},300);
 
+/* GAME WITH UNLOCK */
 let score=0;
 let unlocked=false;
 
@@ -234,9 +319,8 @@ setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="💚";
-
-h.style.left=Math.random()*85+"%";
-h.style.top=Math.random()*150+"px";
+h.style.left=Math.random()*80+"%";
+h.style.top=Math.random()*160+"px";
 
 h.onclick=()=>{
 if(unlocked) return;
@@ -244,9 +328,9 @@ if(unlocked) return;
 score++;
 document.getElementById("score").innerText=score;
 
-if(score >= 10){
+if(score>=10){
 unlocked=true;
-document.getElementById("letterBox").style.display="block";
+document.getElementById("loveLetter").style.display="block";
 confetti();
 }
 
@@ -255,7 +339,16 @@ h.remove();
 
 document.getElementById("game").appendChild(h);
 setTimeout(()=>h.remove(),2000);
-},700);
+},800);
+
+/* MODAL */
+function openModal(card){
+document.getElementById("modalImg").src=card.querySelector("img").src;
+document.getElementById("modal").style.display="flex";
+}
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
 
 </script>
 
